@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="si" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandun Hardware | සඳූන් හාඩ්වෙයාර් & Building Supplies</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                            dark: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Alpine.js CDN for reactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #7c2d12 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ea580c;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased custom-scrollbar" x-data="hardwareStore()">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-gray-900 text-gray-300 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-500"></i> Main Street, High Level Rd, Maharagama</span>
+                <span class="hidden md:flex items-center gap-2"><i class="fa-solid fa-clock text-brand-500"></i> Mon - Sat: 7:00 AM - 7:30 PM | Sun: 8:00 AM - 2:00 PM</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:0771234567" class="hover:text-brand-500 transition font-semibold"><i class="fa-solid fa-phone mr-1"></i> 077 123 4567</a>
+                <span class="text-gray-600">|</span>
+                <a href="https://wa.me/94771234567" target="_blank" class="text-green-400 hover:text-green-300 transition flex items-center gap-1">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-brand-600 to-amber-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition duration-300">
+                        <i class="fa-solid fa-screwdriver-wrench text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-gray-900 block leading-none">SANDUN <span class="text-brand-600">HARDWARE</span></span>
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Building Supplies & Tools</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Menu -->
+                <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-gray-700">
+                    <a href="#home" class="hover:text-brand-600 transition">මුල් පිටුව (Home)</a>
+                    <a href="#products" class="hover:text-brand-600 transition">භාණ්ඩ වර්ග (Products)</a>
+                    <a href="#calculator" class="hover:text-brand-600 transition text-brand-600 font-semibold flex items-center gap-1">
+                        <i class="fa-solid fa-calculator text-xs"></i> Material Estimator
+                    </a>
+                    <a href="#paint-visualizer" class="hover:text-brand-600 transition">තීන්ත මාර්ගෝපදේශය</a>
+                    <a href="#services" class="hover:text-brand-600 transition">සේවාවන්</a>
+                    <a href="#contact" class="hover:text-brand-600 transition">සම්බන්ධ කරගන්න</a>
+                </nav>
+
+                <!-- Action Buttons & Cart -->
+                <div class="flex items-center space-x-4">
+                    <button @click="openCartModal = true" class="relative p-2.5 bg-gray-100 hover:bg-gray-200 rounded-xl text-gray-700 transition">
+                        <i class="fa-solid fa-basket-shopping text-lg"></i>
+                        <span x-show="cart.length > 0" x-text="cart.reduce((a, b) => a + b.qty, 0)" class="absolute -top-1 -right-1 bg-brand-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center animate-bounce">0</span>
+                    </button>
+
+                    <a href="tel:0771234567" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-5 py-2.5 rounded-xl font-semibold shadow-md shadow-brand-500/20 hover:shadow-lg hover:from-brand-700 hover:to-brand-600 transition duration-300">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>ඇමතුමක් දෙන්න</span>
+                    </a>
+
+                    <!-- Mobile Menu Toggle Button -->
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark text-2xl' : 'fa-bars text-2xl'"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" @click="mobileMenuOpen = false" class="block py-2 font-medium text-gray-800 hover:text-brand-600">මුල් පිටුව (Home)</a>
+            <a href="#products" @click="mobileMenuOpen = false" class="block py-2 font-medium text-gray-800 hover:text-brand-600">භාණ්ඩ වර්ග (Products)</a>
+            <a href="#calculator" @click="mobileMenuOpen = false" class="block py-2 font-medium text-brand-600 font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-calculator"></i> Material Estimator
+            </a>
+            <a href="#paint-visualizer" @click="mobileMenuOpen = false" class="block py-2 font-medium text-gray-800 hover:text-brand-600">තීන්ත මාර්ගෝපදේශය</a>
+            <a href="#services" @click="mobileMenuOpen = false" class="block py-2 font-medium text-gray-800 hover:text-brand-600">සේවාවන්</a>
+            <a href="#contact" @click="mobileMenuOpen = false" class="block py-2 font-medium text-gray-800 hover:text-brand-600">සම්බන්ධ කරගන්න</a>
+            <a href="https://wa.me/94771234567" target="_blank" class="w-full mt-2 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl font-bold">
+                <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp හරහා ඕඩර් කරන්න
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative hero-gradient text-white overflow-hidden py-20 lg:py-28">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left" data-aos="fade-right">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/20 text-brand-300 text-xs sm:text-sm font-semibold border border-brand-500/30">
+                        <i class="fa-solid fa-award text-yellow-400"></i> වසර 15+ ක විශ්වාසනීය පාරිභෝගික සේවාව
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                        ඔබගේ සිහින නිවසට <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-brand-500">
+                            සුපිරිම හාඩ්වෙයාර් බඩු
+                        </span>
+                    </h1>
+                    
+                    <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        උසස්ම තත්ත්වයේ ගොඩනැගිලි ද්‍රව්‍ය, පවර් ටූල්ස්, ප්ලම්බින්, ඉලෙක්ට්‍රිකල් සහ තීන්ත වර්ග සාධාරණ මිලට එකම වහලක් යටින්!
+                    </p>
+
+                    <!-- Live Hardware Item Search Widget -->
+                    <div class="pt-2 max-w-xl mx-auto lg:mx-0">
+                        <div class="relative flex items-center">
+                            <input type="text" x-model="searchQuery" @focus="showSearchResults = true" placeholder="උදා: සිමෙන්ති, Dulux Paint, PVC Pipe, Drill Machine..." class="w-full py-4 pl-12 pr-32 rounded-2xl text-gray-900 bg-white shadow-2xl focus:outline-none focus:ring-4 focus:ring-brand-500/40 text-sm font-medium">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 text-gray-400 text-lg"></i>
+                            <button @click="scrollToProducts()" class="absolute right-2 px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-bold transition shadow-md">
+                                සොයන්න
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-2 flex items-center justify-center lg:justify-start gap-2">
+                            <span>නිතර සොයන දේ:</span>
+                            <button @click="searchQuery = 'Tokyo Super'; scrollToProducts()" class="underline hover:text-brand-400">Tokyo Cement</button>,
+                            <button @click="searchQuery = 'Dulux'; scrollToProducts()" class="underline hover:text-brand-400">Dulux Paints</button>,
+                            <button @click="searchQuery = 'Water Tank'; scrollToProducts()" class="underline hover:text-brand-400">Water Tanks</button>
+                        </p>
+                    </div>
+
+                    <!-- Highlights Badges -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-gray-700/50 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="text-2xl lg:text-3xl font-bold text-amber-400">100%</p>
+                            <p class="text-xs text-gray-400">Original Brands</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl lg:text-3xl font-bold text-amber-400">Fast</p>
+                            <p class="text-xs text-gray-400">Site Delivery</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl lg:text-3xl font-bold text-amber-400">Best</p>
+                            <p class="text-xs text-gray-400">Wholesale Price</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Hero Right Interactive Hardware Banner Card -->
+                <div class="lg:col-span-5" data-aos="fade-left">
+                    <div class="relative">
+                        <!-- Decorative glow -->
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-orange-600 to-amber-500 blur-xl opacity-40"></div>
+                        
+                        <div class="relative bg-gray-900 border border-gray-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30">
+                                    <i class="fa-solid fa-bolt mr-1"></i> විශේෂ දීමනා (Special Offers)
+                                </span>
+                                <span class="text-xs text-gray-400">අද දිනයේ මිල ගණන්</span>
+                            </div>
+
+                            <!-- Featured Deals Carousel / Card -->
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-gray-800/80 border border-gray-700 flex items-center gap-4 hover:border-brand-500/50 transition">
+                                    <div class="w-16 h-16 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-2xl flex-shrink-0">
+                                        <i class="fa-solid fa-cubes-stacked"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-white text-sm sm:text-base">Tokyo Super Cement (50kg)</h4>
+                                        <p class="text-xs text-gray-400">ISO Certified Concrete Cement</p>
+                                        <p class="text-brand-400 font-bold text-sm mt-1">Rs. 2,350 <span class="text-xs text-gray-500 line-through">Rs. 2,500</span></p>
+                                    </div>
+                                    <button @click="addToCart('Tokyo Super Cement (50kg)', 2350)" class="p-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-gray-800/80 border border-gray-700 flex items-center gap-4 hover:border-brand-500/50 transition">
+                                    <div class="w-16 h-16 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400 text-2xl flex-shrink-0">
+                                        <i class="fa-solid fa-faucet-drip"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-white text-sm sm:text-base">S-Lon PVC Pipes & Fittings</h4>
+                                        <p class="text-xs text-gray-400">Type 600 / Type 1000 All Sizes</p>
+                                        <p class="text-amber-400 font-bold text-sm mt-1">Up to 15% Off</p>
+                                    </div>
+                                    <button @click="searchQuery='S-Lon'; scrollToProducts()" class="p-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-xl text-xs font-bold">
+                                        බලන්න
+                                    </button>
+                                </div>
+                            </div>
+
+                            <a href="#calculator" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 text-sm transition">
+                                <i class="fa-solid fa-calculator"></i>
+                                <span>බිල් එක Calculate කරගන්න (Estimator)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Navigation Section -->
+    <section class="py-12 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                <template x-for="cat in categories" :key="cat.name">
+                    <button @click="selectedCategory = cat.id; scrollToProducts()" 
+                            class="p-4 rounded-2xl border transition duration-300 text-center group flex flex-col items-center justify-center gap-2"
+                            :class="selectedCategory === cat.id ? 'border-brand-600 bg-brand-50 shadow-md' : 'border-gray-200 hover:border-brand-300 hover:bg-gray-50'">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl transition group-hover:scale-110"
+                             :class="selectedCategory === cat.id ? 'bg-brand-600 text-white' : 'bg-gray-100 text-brand-600 group-hover:bg-brand-600 group-hover:text-white'">
+                            <i :class="cat.icon"></i>
+                        </div>
+                        <span class="text-xs font-bold text-gray-800" x-text="cat.name"></span>
+                    </button>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Our Showroom Inventory</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-1">ගොඩනැගිලි හා හාඩ්වෙයාර් භාණ්ඩ</h2>
+                </div>
+                
+                <!-- Category Pill Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button @click="selectedCategory = 'all'" 
+                            class="px-4 py-2 rounded-xl text-xs font-bold transition"
+                            :class="selectedCategory === 'all' ? 'bg-brand-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-200 border border-gray-200'">
+                        සියල්ල (All Items)
+                    </button>
+                    <button @click="selectedCategory = 'building'" 
+                            class="px-4 py-2 rounded-xl text-xs font-bold transition"
+                            :class="selectedCategory === 'building' ? 'bg-brand-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-200 border border-gray-200'">
+                        ගොඩනැගිලි ද්‍රව්‍ය
+                    </button>
+                    <button @click="selectedCategory = 'tools'" 
+                            class="px-4 py-2 rounded-xl text-xs font-bold transition"
+                            :class="selectedCategory === 'tools' ? 'bg-brand-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-200 border border-gray-200'">
+                        පවර් ටූල්ස්
+                    </button>
+                    <button @click="selectedCategory = 'plumbing'" 
+                            class="px-4 py-2 rounded-xl text-xs font-bold transition"
+                            :class="selectedCategory === 'plumbing' ? 'bg-brand-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-200 border border-gray-200'">
+                        ප්ලම්බින් / නල
+                    </button>
+                    <button @click="selectedCategory = 'paint'" 
+                            class="px-4 py-2 rounded-xl text-xs font-bold transition"
+                            :class="selectedCategory === 'paint' ? 'bg-brand-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-200 border border-gray-200'">
+                        තීන්ත වර්ග
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <template x-for="product in filteredProducts" :key="product.id">
+                    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between group" data-aos="fade-up">
+                        <div>
+                            <!-- Product Image Container -->
+                            <div class="relative bg-gray-100 h-48 flex items-center justify-center p-4 overflow-hidden">
+                                <span class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider" x-text="product.badge"></span>
+                                
+                                <div class="text-6xl text-gray-700 transition duration-300 group-hover:scale-110">
+                                    <i :class="product.icon"></i>
+                                </div>
+
+                                <button @click="quickViewProduct = product" class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm p-2 rounded-xl text-gray-700 hover:text-brand-600 shadow-md text-xs font-bold transition">
+                                    <i class="fa-solid fa-eye"></i> Quick View
+                                </button>
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="p-5">
+                                <div class="text-xs text-brand-600 font-bold uppercase tracking-wider mb-1" x-text="product.brand"></div>
+                                <h3 class="font-bold text-gray-900 text-base mb-2 group-hover:text-brand-600 transition" x-text="product.name"></h3>
+                                <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed" x-text="product.desc"></p>
+                            </div>
+                        </div>
+
+                        <!-- Price & Action Button -->
+                        <div class="p-5 pt-0 border-t border-gray-100 mt-4 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-gray-400 block">මිල (Price)</span>
+                                <span class="text-lg font-extrabold text-gray-900" x-text="'Rs. ' + product.price.toLocaleString()"></span>
+                            </div>
+                            <button @click="addToCart(product.name, product.price)" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition shadow-md flex items-center gap-1.5">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Empty Search State -->
+            <div x-show="filteredProducts.length === 0" class="text-center py-16 bg-white rounded-3xl border border-dashed border-gray-300">
+                <i class="fa-solid fa-magnifying-glass text-4xl text-gray-300 mb-3"></i>
+                <h3 class="text-lg font-bold text-gray-700">භාණ්ඩ හමු නොවීය (No items found)</h3>
+                <p class="text-xs text-gray-500 mt-1">කරුණාකර වෙනත් නමකින් සර්ච් කරන්න හෝ direct WhatsApp හරහා විමසන්න.</p>
+                <button @click="searchQuery = ''; selectedCategory = 'all'" class="mt-4 px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold">
+                    නැවත පෙන්වන්න
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Hardware Material Calculator Section -->
+    <section id="calculator" class="py-20 bg-gray-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="bg-brand-500/20 text-brand-400 text-xs font-bold px-3 py-1 rounded-full border border-brand-500/30 uppercase tracking-widest">Free Tool</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">ගොඩනැගිලි ද්‍රව්‍ය ගණනය කිරීමේ කැල්කියුලේටරය</h2>
+                <p class="text-gray-400 text-sm mt-2">ඔබේ බිත්තියට හෝ කොන්ක්‍රීට් එකට අවශ්‍ය සිමෙන්ති, වැලි, ගඩොල් හෝ තීන්ත ප්‍රමාණය තත්පර කිහිපයකින් ඇස්තමේන්තු කරගන්න.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Calculator Tabs & Inputs -->
+                <div class="lg:col-span-7 bg-gray-800/90 border border-gray-700 rounded-3xl p-6 sm:p-8 space-y-6">
+                    
+                    <!-- Tabs -->
+                    <div class="flex border-b border-gray-700 pb-4 gap-4 overflow-x-auto">
+                        <button @click="calcTab = 'brick'" :class="calcTab === 'brick' ? 'bg-brand-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'" class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-2">
+                            <i class="fa-solid fa-cubes"></i> ගඩොල් කැල්කියුලේටරය
+                        </button>
+                        <button @click="calcTab = 'concrete'" :class="calcTab === 'concrete' ? 'bg-brand-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'" class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-2">
+                            <i class="fa-solid fa-dumpster"></i> කොන්ක්‍රීට් / සිමෙන්ති
+                        </button>
+                        <button @click="calcTab = 'paint'" :class="calcTab === 'paint' ? 'bg-brand-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'" class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-2">
+                            <i class="fa-solid fa-paint-roller"></i> තීන්ත ලීටර් ගණන
+                        </button>
+                    </div>
+
+                    <!-- TAB 1: BRICK & BLOCK CALCULATOR -->
+                    <div x-show="calcTab === 'brick'" class="space-y-4">
+                        <h4 class="font-bold text-sm text-brand-400">බිත්තියේ ප්‍රමාණය ඇතුළත් කරන්න:</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">බිත්තියේ දිග (Wall Length in Feet):</label>
+                                <input type="number" x-model.number="calcBrickLength" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="10">
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">බිත්තියේ උස (Wall Height in Feet):</label>
+                                <input type="number" x-model.number="calcBrickHeight" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="9">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 block mb-1">භාවිතා කරන වර්ගය (Material Type):</label>
+                            <select x-model="calcBrickType" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                                <option value="redbrick">සාමාන්‍ය මැටි ගඩොල් (Red Bricks)</option>
+                                <option value="cementblock">සිමෙන්ති බ්ලොක් ගල් (Cement Blocks 4")</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: CONCRETE / SLAB CALCULATOR -->
+                    <div x-show="calcTab === 'concrete'" class="space-y-4">
+                        <h4 class="font-bold text-sm text-brand-400">කොන්ක්‍රීට් ප්‍රමාණය (Slab / Footing):</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">දිග (Length Ft):</label>
+                                <input type="number" x-model.number="calcConcLength" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="10">
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">පළල (Width Ft):</label>
+                                <input type="number" x-model.number="calcConcWidth" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="10">
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">ගනකම (Thickness Inches):</label>
+                                <input type="number" x-model.number="calcConcThick" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: PAINT CALCULATOR -->
+                    <div x-show="calcTab === 'paint'" class="space-y-4">
+                        <h4 class="font-bold text-sm text-brand-400">ආලේප කරන වර්ගප්‍රමාණය (Total Surface Area):</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">මුළු වර්ග අඩි ගණන (Total Sq.Ft):</label>
+                                <input type="number" x-model.number="calcPaintSqft" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="500">
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">තීන්ත අතගණන (Number of Coats):</label>
+                                <select x-model.number="calcPaintCoats" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2.5 px-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                                    <option value="1">1 Coat</option>
+                                    <option value="2">2 Coats (Recommended)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Calculator Result Summary Card -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-brand-900/60 to-gray-800 border border-brand-500/30 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-4">
+                        <h3 class="font-extrabold text-lg text-white">අපේක්ෂිත ද්‍රව්‍ය ප්‍රමාණය (Estimated Materials)</h3>
+                        <i class="fa-solid fa-chart-pie text-brand-400 text-xl"></i>
+                    </div>
+
+                    <!-- Result Output based on selected Tab -->
+                    <div class="space-y-4 text-sm">
+                        <!-- Brick Results -->
+                        <template x-if="calcTab === 'brick'">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">වර්ගප්‍රමාණය (Total Wall Area):</span>
+                                    <span class="font-bold text-amber-400" x-text="(calcBrickLength * calcBrickHeight) + ' Sq.Ft'"></span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">අවශ්‍ය ගල්/ගඩොල් ගණන:</span>
+                                    <span class="font-bold text-2xl text-brand-400" x-text="calculateBricks().count + ' Units'"></span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">අවශ්‍ය සිමෙන්ති කොට්ට ගණන:</span>
+                                    <span class="font-bold text-emerald-400" x-text="calculateBricks().bags + ' Bags (50kg)'"></span>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Concrete Results -->
+                        <template x-if="calcTab === 'concrete'">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">කොන්ක්‍රීට් පරිමාව (Volume):</span>
+                                    <span class="font-bold text-amber-400" x-text="calculateConcrete().cubicFeet + ' Cu.Ft'"></span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">සිමෙන්ති කොට්ට (Cement):</span>
+                                    <span class="font-bold text-2xl text-brand-400" x-text="calculateConcrete().cementBags + ' Bags'"></span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">වැලි (Sand Estimate):</span>
+                                    <span class="font-bold text-emerald-400" x-text="calculateConcrete().sandCubes + ' Cubes'"></span>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Paint Results -->
+                        <template x-if="calcTab === 'paint'">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">අවශ්‍ය තීන්ත ප්‍රමාණය:</span>
+                                    <span class="font-bold text-2xl text-brand-400" x-text="calculatePaint().liters + ' Liters'"></span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-900/60 p-3 rounded-xl border border-gray-700">
+                                    <span class="text-gray-300">තක්සේරුගත මිල (Est. Cost):</span>
+                                    <span class="font-bold text-emerald-400" x-text="'Rs. ' + calculatePaint().estimatedCost.toLocaleString()"></span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Direct Order Action -->
+                    <button @click="sendCalcToWhatsApp()" class="w-full py-3.5 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>මේ Estimations WhatsApp එකට යවන්න</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Paint Visualizer Section -->
+    <section id="paint-visualizer" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Dulux & Asian Paints Center</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">තීන්ත වර්ණ හා ආලේපන උපදේශකය</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        ඔබේ නිවසේ ගෘහස්ථ (Interior) සහ බාහිර (Exterior) බිත්ති සඳහා ගැලපෙනම පාට සහ Quality Dulux WeatherShield / Brilliant White තීන්ත අපෙන් ලබාගන්න.
+                    </p>
+
+                    <!-- Interactive Paint Swatches -->
+                    <div class="space-y-3">
+                        <label class="text-xs font-bold text-gray-700 uppercase">නැරඹීමට වර්ණයක් තෝරන්න (Select Swatch):</label>
+                        <div class="flex flex-wrap gap-3">
+                            <template x-for="swatch in paintColors" :key="swatch.name">
+                                <button @click="selectedColor = swatch" 
+                                        class="w-10 h-10 rounded-full border-2 transition duration-200 shadow-sm transform hover:scale-110 flex items-center justify-center"
+                                        :style="'background-color: ' + swatch.hex"
+                                        :class="selectedColor.name === swatch.name ? 'border-brand-600 ring-2 ring-brand-500/40' : 'border-white'">
+                                    <i x-show="selectedColor.name === swatch.name" class="fa-solid fa-check text-xs" :class="swatch.darkText ? 'text-gray-900' : 'text-white'"></i>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200">
+                        <p class="text-xs text-gray-500">තෝරාගත් වර්ණය:</p>
+                        <p class="font-extrabold text-gray-900 text-lg" x-text="selectedColor.name + ' (' + selectedColor.code + ')'"></p>
+                        <p class="text-xs text-brand-600 font-semibold mt-1" x-text="'විශේෂ ලීටර් 10 බාල්දිය: Rs. ' + selectedColor.price.toLocaleString()"></p>
+                    </div>
+
+                    <button @click="addToCart(selectedColor.name + ' Paint (10L)', selectedColor.price)" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-fill-drip"></i>
+                        <span>මේ වර්ණය ඇණවුම් කරන්න</span>
+                    </button>
+                </div>
+
+                <!-- Paint Preview Box Mockup -->
+                <div class="lg:col-span-7">
+                    <div class="bg-gray-100 p-6 rounded-3xl border border-gray-200 shadow-inner">
+                        <div class="h-80 rounded-2xl relative shadow-lg transition duration-500 flex flex-col justify-between p-6 overflow-hidden" :style="'background-color: ' + selectedColor.hex">
+                            <div class="flex justify-between items-start">
+                                <span class="px-3 py-1 bg-white/90 rounded-full text-xs font-extrabold text-gray-800 shadow">
+                                    Living Room Wall Preview
+                                </span>
+                                <span class="px-3 py-1 bg-gray-900/80 text-white rounded-full text-xs font-bold" x-text="selectedColor.code"></span>
+                            </div>
+
+                            <!-- Mockup Room Furniture Graphic Overlay -->
+                            <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl max-w-xs shadow-xl space-y-1">
+                                <div class="flex items-center gap-2 text-xs font-bold text-gray-800">
+                                    <i class="fa-solid fa-paint-roller text-brand-600"></i>
+                                    <span x-text="selectedColor.name"></span>
+                                </div>
+                                <p class="text-[11px] text-gray-500">Dulux Premium Interior Emulsion Washable Wall Finish</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Why Sandun Hardware</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-1">අපගේ ප්‍රධාන සේවාවන්</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition duration-300" data-aos="fade-up">
+                    <div class="w-14 h-14 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">ඉක්මන් ප්‍රවාහනය (Fast Delivery)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        ඔබේ වැඩබිමට (Construction Site) අවශ්‍ය සිමෙන්ති, වැලි, කැටගල් සහ බර ද්‍රව්‍ය කෙළින්ම අපගේ ලොරි රථ මගින් ප්‍රවාහනය කර දෙනු ලැබේ.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">තොග හා සිල්ලර මිල ගණන්</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        කොන්ත්‍රාත්කරුවන්ට සහ විශාල ගොඩනැගිලි ව්‍යාපෘති සඳහා විශේෂ තොග මිල (Wholesale Discounts) සහ පහසු ගෙවීමේ ක්‍රම.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">කාර්මික උපදෙස් (Technical Advice)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        ප්ලම්බින්, ඉලෙක්ට්‍රිකල් සහ වයරින් වැඩ සඳහා සුදුසුම බඩුවර්ග තෝරාගැනීමට පළපුරුදු තාක්ෂණික ශිල්පීන්ගේ නොමිලේ උපදෙස්.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal / Sliding Overlay -->
+    <div x-show="openCartModal" class="fixed inset-0 z-50 overflow-hidden" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <div class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm" @click="openCartModal = false"></div>
+
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+                
+                <!-- Header -->
+                <div class="p-6 bg-gray-900 text-white flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-basket-shopping text-brand-500 text-xl"></i>
+                        <h3 class="font-bold text-lg">ඔබගේ ඇණවුම (Cart)</h3>
+                    </div>
+                    <button @click="openCartModal = false" class="text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div class="p-6 flex-1 overflow-y-auto space-y-4 custom-scrollbar">
+                    <template x-if="cart.length === 0">
+                        <div class="text-center py-12 text-gray-400">
+                            <i class="fa-solid fa-cart-flatbed text-5xl mb-3 text-gray-300"></i>
+                            <p class="font-bold text-gray-600">ඔබගේ Cart එක හිස්ව පවතී</p>
+                            <p class="text-xs mt-1">භාණ්ඩ එක්කිරීමට Add to Cart එබන්න.</p>
+                        </div>
+                    </template>
+
+                    <template x-for="(item, index) in cart" :key="index">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-2xl border border-gray-200">
+                            <div class="flex-1 pr-3">
+                                <h4 class="font-bold text-sm text-gray-800" x-text="item.name"></h4>
+                                <p class="text-xs text-brand-600 font-bold" x-text="'Rs. ' + (item.price * item.qty).toLocaleString()"></p>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button @click="updateQty(index, -1)" class="w-7 h-7 bg-white border border-gray-300 rounded-lg text-xs font-bold hover:bg-gray-100">-</button>
+                                <span class="text-sm font-bold text-gray-800 w-4 text-center" x-text="item.qty"></span>
+                                <button @click="updateQty(index, 1)" class="w-7 h-7 bg-white border border-gray-300 rounded-lg text-xs font-bold hover:bg-gray-100">+</button>
+                                <button @click="removeFromCart(index)" class="text-red-500 ml-2 hover:text-red-700 text-sm">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Footer Checkout Options -->
+                <div class="p-6 bg-gray-50 border-t border-gray-200 space-y-4">
+                    <div class="flex justify-between items-center text-base font-extrabold text-gray-900">
+                        <span>එකතුව (Total):</span>
+                        <span class="text-xl text-brand-600" x-text="'Rs. ' + cartTotal().toLocaleString()"></span>
+                    </div>
+
+                    <p class="text-xs text-gray-500">
+                        * ඇණවුම් කිරීමෙන් පසු අපගේ නියෝජිතයෙකු භාණ්ඩ ලැබෙන වේලාව සහDelivery ගාස්තු තහවුරු කරනු ඇත.
+                    </p>
+
+                    <button @click="submitOrderWhatsApp()" :disabled="cart.length === 0" class="w-full py-3.5 bg-green-600 hover:bg-green-500 disabled:opacity-50 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg transition">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>WhatsApp මගින් Order කරන්න</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Product Modal -->
+    <div x-show="quickViewProduct" class="fixed inset-0 z-50 flex items-center justify-center p-4" x-transition>
+        <div class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm" @click="quickViewProduct = null"></div>
+
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 relative z-10 shadow-2xl space-y-4">
+            <button @click="quickViewProduct = null" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <template x-if="quickViewProduct">
+                <div class="space-y-4">
+                    <div class="bg-gray-100 h-48 rounded-2xl flex items-center justify-center text-7xl text-brand-600">
+                        <i :class="quickViewProduct.icon"></i>
+                    </div>
+
+                    <div>
+                        <span class="text-xs font-bold text-brand-600 uppercase" x-text="quickViewProduct.brand"></span>
+                        <h3 class="text-2xl font-black text-gray-900" x-text="quickViewProduct.name"></h3>
+                        <p class="text-xs text-gray-500 mt-2 leading-relaxed" x-text="quickViewProduct.desc"></p>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <div>
+                            <span class="text-xs text-gray-400 block">මිල (Price)</span>
+                            <span class="text-2xl font-extrabold text-gray-900" x-text="'Rs. ' + quickViewProduct.price.toLocaleString()"></span>
+                        </div>
+
+                        <button @click="addToCart(quickViewProduct.name, quickViewProduct.price); quickViewProduct = null" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm shadow-md transition flex items-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Contact & Map Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-500 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold">අපගේ ස්ථානය සහ තොරතුරු</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        ඔබට අවශ්‍ය ඕනෑම ගොඩනැගිලි ද්‍රව්‍යයක් පිළිබඳ විමසීමට අප ආයතනයට පැමිණෙන්න නැතහොත් දුරකථනයෙන් සම්බන්ධ වන්න.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4 p-4 bg-gray-800/60 rounded-2xl border border-gray-700">
+                            <div class="w-10 h-10 bg-brand-500/20 text-brand-400 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">ලිපිනය (Address)</h4>
+                                <p class="text-xs text-gray-400 mt-1">No. 142, High Level Road, Maharagama, Sri Lanka</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-gray-800/60 rounded-2xl border border-gray-700">
+                            <div class="w-10 h-10 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">දුරකථන අංක (Hotline)</h4>
+                                <p class="text-xs text-gray-400 mt-1">077 123 4567 / 011 280 0000</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-gray-800/60 rounded-2xl border border-gray-700">
+                            <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">විවෘත වේලාවන් (Business Hours)</h4>
+                                <p class="text-xs text-gray-400 mt-1">සඳුදා - සෙනසුරාදා: පෙ.ව 7.00 - ප.ව 7.30<br>ඉරිදා: පෙ.ව 8.00 - ප.ව 2.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Direct Message Form -->
+                <div class="lg:col-span-7 bg-gray-800 p-8 rounded-3xl border border-gray-700 space-y-6">
+                    <h3 class="text-xl font-bold text-white">අපට පණිවිඩයක් යවන්න (Send Enquiry)</h3>
+                    
+                    <form @submit.prevent="submitDirectMsg()" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">ඔබගේ නම (Your Name):</label>
+                                <input type="text" required x-model="contactForm.name" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="සුනිල් පෙරේරා">
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 block mb-1">දුරකථන අංකය (Phone Number):</label>
+                                <input type="tel" required x-model="contactForm.phone" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="07X XXXXXXX">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-gray-400 block mb-1">ඔබට අවශ්‍ය දේ (Message / Requirements):</label>
+                            <textarea rows="4" required x-model="contactForm.message" class="w-full bg-gray-900 border border-gray-700 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:border-brand-500" placeholder="අවශ්‍ය බඩු ලැයිස්තුව හෝ විමසීම මෙහි සටහන් කරන්න..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-brand-600 to-amber-500 hover:from-brand-700 hover:to-amber-600 text-white font-bold rounded-xl shadow-lg transition">
+                            පණිවිඩය යවන්න (Send via WhatsApp)
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>© 2026 Sandun Hardware. All rights reserved. Designed for Excellence.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-brand-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-400">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94771234567" target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition duration-300 hover:scale-110 group">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-bold text-xs ml-0 group-hover:ml-2">
+            WhatsApp විමසීම්
+        </span>
+    </a>
+
+    <script>
+        function hardwareStore() {
+            return {
+                mobileMenuOpen: false,
+                openCartModal: false,
+                quickViewProduct: null,
+                searchQuery: '',
+                selectedCategory: 'all',
+                calcTab: 'brick',
+
+                // Calculator inputs
+                calcBrickLength: 10,
+                calcBrickHeight: 9,
+                calcBrickType: 'redbrick',
+
+                calcConcLength: 10,
+                calcConcWidth: 10,
+                calcConcThick: 4,
+
+                calcPaintSqft: 500,
+                calcPaintCoats: 2,
+
+                // Cart State
+                cart: [],
+
+                // Contact form
+                contactForm: {
+                    name: '',
+                    phone: '',
+                    message: ''
+                },
+
+                // Product Categories
+                categories: [
+                    { id: 'building', name: 'ගොඩනැගිලි ද්‍රව්‍ය', icon: 'fa-solid fa-cubes-stacked' },
+                    { id: 'tools', name: 'පවර් ටූල්ස්', icon: 'fa-solid fa-screwdriver-wrench' },
+                    { id: 'plumbing', name: 'ප්ලම්බින් / නල', icon: 'fa-solid fa-faucet-drip' },
+                    { id: 'paint', name: 'තීන්ත වර්ග', icon: 'fa-solid fa-paint-roller' },
+                    { id: 'electrical', name: 'වයරින් බඩු', icon: 'fa-solid fa-plug' },
+                    { id: 'roofing', name: 'වහල හා පීලි', icon: 'fa-solid fa-house-chimney' }
+                ],
+
+                // Paint Swatches
+                paintColors: [
+                    { name: 'Brilliant White', code: 'Dulux 101', hex: '#f8fafc', price: 14500, darkText: true },
+                    { name: 'Warm Cream', code: 'Dulux 204', hex: '#fef3c7', price: 15200, darkText: true },
+                    { name: 'Ocean Mist Blue', code: 'Dulux 308', hex: '#e0f2fe', price: 15800, darkText: true },
+                    { name: 'Sage Garden Green', code: 'Dulux 412', hex: '#dcfce7', price: 16000, darkText: true },
+                    { name: 'Modern Charcoal Gray', code: 'Dulux 802', hex: '#475569', price: 16500, darkText: false },
+                    { name: 'Terracotta Red', code: 'Asian Paints 501', hex: '#b91c1c', price: 17200, darkText: false }
+                ],
+                selectedColor: { name: 'Brilliant White', code: 'Dulux 101', hex: '#f8fafc', price: 14500, darkText: true },
+
+                // Product Showroom Data
+                products: [
+                    { id: 1, category: 'building', name: 'Tokyo Super Cement (50kg)', brand: 'Tokyo Cement', price: 2350, icon: 'fa-solid fa-cubes', badge: 'Top Seller', desc: 'උසස් තත්ත්වයේ ISO ප්‍රමිතියෙන් යුත් කොන්ක්‍රීට් සහ බිත්ති බැඳීමට සුදුසුම සිමෙන්ති.' },
+                    { id: 2, category: 'tools', name: 'Makita Angle Grinder 4"', brand: 'Makita Japan', price: 14800, icon: 'fa-solid fa-compact-disc', badge: 'Original', desc: '4 Inch High speed heavy duty grinding machine with 1 year warranty.' },
+                    { id: 3, category: 'plumbing', name: 'S-Lon 1/2 Inch PVC Pipe (Type 600)', brand: 'S-Lon', price: 890, icon: 'fa-solid fa-gears', badge: 'Popular', desc: 'පානීය ජල පද්ධති සඳහා සුදුසුම S-Lon නළ සහ සවිකිරීම්.' },
+                    { id: 4, category: 'paint', name: 'Dulux Weathershield Smooth 10L', brand: 'Dulux Paints', price: 18900, icon: 'fa-solid fa-fill-drip', badge: 'Weather Proof', desc: 'වසර 10ක් යනතුරු බාහිර බිත්ති අව්වෙන් හා වැස්සෙන් ආරක්ෂා කරන උසස්ම තීන්ත.' },
+                    { id: 5, category: 'tools', name: 'Bosch Impact Drill Machine 13mm', brand: 'Bosch', price: 16500, icon: 'fa-solid fa-screwdriver-wrench', badge: 'Heavy Duty', desc: 'කොන්ක්‍රීට් සහ ලී විදීම සඳහා බලසම්පන්න ඩ්‍රිල් මැෂිම.' },
+                    { id: 6, category: 'electrical', name: 'ACL 1.0mm Single Core Wire 100m', brand: 'ACL Cables', price: 12400, icon: 'fa-solid fa-plug', badge: 'Safety Certified', desc: 'නිවසේ වයරින් කටයුතු සඳහා ආරක්ෂිතම 100% තඹ Cable.' },
+                    { id: 7, category: 'building', name: 'Water Tank 1000L Triple Layer', brand: 'Arpico', price: 24500, icon: 'fa-solid fa-glass-water', badge: 'UV Protected', desc: 'වසර 20ක වගකීම සහිත පිරිසිදු පානීය ජලය ගබඩා කිරීමේ ටැංකිය.' },
+                    { id: 8, category: 'plumbing', name: 'Kross Brass Water Tap 1/2"', brand: 'Kross', price: 1450, icon: 'fa-solid fa-faucet', badge: 'Non Rust', desc: 'මළනොකන උසස් පිත්තල වතුර කරාමය.' }
+                ],
+
+                // Filtered Products Getter
+                get filteredProducts() {
+                    return this.products.filter(p => {
+                        const matchesCat = this.selectedCategory === 'all' || p.category === this.selectedCategory;
+                        const matchesSearch = p.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+                                              p.brand.toLowerCase().includes(this.searchQuery.toLowerCase());
+                        return matchesCat && matchesSearch;
+                    });
+                },
+
+                // Cart Logic
+                addToCart(name, price) {
+                    const existing = this.cart.find(i => i.name === name);
+                    if (existing) {
+                        existing.qty++;
+                    } else {
+                        this.cart.push({ name, price, qty: 1 });
+                    }
+                    this.triggerConfetti();
+                },
+
+                updateQty(index, delta) {
+                    this.cart[index].qty += delta;
+                    if (this.cart[index].qty <= 0) {
+                        this.cart.splice(index, 1);
+                    }
+                },
+
+                removeFromCart(index) {
+                    this.cart.splice(index, 1);
+                },
+
+                cartTotal() {
+                    return this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                },
+
+                // Scroll Helper
+                scrollToProducts() {
+                    const el = document.getElementById('products');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                },
+
+                // Calculator Logic Functions
+                calculateBricks() {
+                    const area = (this.calcBrickLength || 0) * (this.calcBrickHeight || 0);
+                    if (this.calcBrickType === 'redbrick') {
+                        const count = Math.ceil(area * 10); // ~10 bricks per sqft
+                        const bags = (count / 300).toFixed(1); // ~1 bag cement per 300 bricks
+                        return { count, bags };
+                    } else {
+                        const count = Math.ceil(area * 1.1); // ~1.1 blocks per sqft
+                        const bags = (count / 50).toFixed(1);
+                        return { count, bags };
+                    }
+                },
+
+                calculateConcrete() {
+                    const cuFt = ((this.calcConcLength || 0) * (this.calcConcWidth || 0) * ((this.calcConcThick || 0) / 12)).toFixed(1);
+                    const cementBags = Math.ceil(cuFt * 0.22); // approx 1:2:4 ratio
+                    const sandCubes = (cuFt * 0.00045).toFixed(2);
+                    return { cubicFeet: cuFt, cementBags, sandCubes };
+                },
+
+                calculatePaint() {
+                    const sqft = (this.calcPaintSqft || 0) * (this.calcPaintCoats || 1);
+                    const liters = Math.ceil(sqft / 110); // ~110 sqft per liter
+                    const estimatedCost = liters * 1600;
+                    return { liters, estimatedCost };
+                },
+
+                // WhatsApp Order Sender
+                submitOrderWhatsApp() {
+                    if (this.cart.length === 0) return;
+
+                    let msg = `*Sandun Hardware - New Web Order*%0A%0A`;
+                    this.cart.forEach((item, i) => {
+                        msg += `${i+1}. ${item.name} x ${item.qty} = Rs. ${(item.price * item.qty).toLocaleString()}%0A`;
+                    });
+                    msg += `%0A*Total Amount: Rs. ${this.cartTotal().toLocaleString()}* %0A%0Aකරුණාකර මෙම ඇණවුම තහවුරු කරන්න.`;
+
+                    window.open(`https://wa.me/94771234567?text=${msg}`, '_blank');
+                },
+
+                sendCalcToWhatsApp() {
+                    let calcMsg = `*Sandun Hardware - Material Calculation Request*%0A%0A`;
+                    if (this.calcTab === 'brick') {
+                        const res = this.calculateBricks();
+                        calcMsg += `*Brick Calc:* Area: ${this.calcBrickLength*this.calcBrickHeight} Sq.Ft%0A- Required Units: ${res.count}%0A- Cement Bags: ${res.bags}%0A`;
+                    } else if (this.calcTab === 'concrete') {
+                        const res = this.calculateConcrete();
+                        calcMsg += `*Concrete Calc:* Volume: ${res.cubicFeet} Cu.Ft%0A- Cement Bags: ${res.cementBags}%0A- Sand Estimate: ${res.sandCubes} Cubes%0A`;
+                    } else {
+                        const res = this.calculatePaint();
+                        calcMsg += `*Paint Calc:* ${res.liters} Liters required for ${this.calcPaintSqft} Sq.Ft%0A`;
+                    }
+                    calcMsg += `%0Aමෙම ප්‍රමාණය සඳහා මිල ගණන් එවන්න.`;
+                    window.open(`https://wa.me/94771234567?text=${calcMsg}`, '_blank');
+                },
+
+                submitDirectMsg() {
+                    const text = `*Message from Website*%0A*Name:* ${this.contactForm.name}%0A*Phone:* ${this.contactForm.phone}%0A*Message:* ${this.contactForm.message}`;
+                    window.open(`https://wa.me/94771234567?text=${encodeURIComponent(text)}`, '_blank');
+                },
+
+                triggerConfetti() {
+                    confetti({
+                        particleCount: 50,
+                        spread: 60,
+                        origin: { y: 0.8 }
+                    });
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>
